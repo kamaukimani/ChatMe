@@ -1,4 +1,5 @@
-import Signup from './Signup'
+import Signup from './Signup';
+import LoginForm from './LoginForm';
 
 function App(){
 
@@ -7,6 +8,7 @@ function App(){
         <div>
             <h1>Welcome to ChatMe application</h1>
             <Signup API_URL={API_URL}/>
+            <LoginForm />
         </div>
     )
 }
