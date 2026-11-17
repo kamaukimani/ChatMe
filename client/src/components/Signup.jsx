@@ -1,19 +1,13 @@
 import React, {useState} from 'react';
 
-function Signup(){
-    const initialFormData = {
-        username: "",
-        email: "",
-        password: "",
-        passwordConfirmation: "",
-    };
+function Signup({API_URL}){
         
     const [username,setUsername] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [passwordConfirmation,setPasswordConfirmation] = useState("");
     const [isLoading,setIsLoading] = useState(false);
-    const [isError,setIsError]=useState(false);
+    const [isError,setIsError]=useState("");
 
     const isMatch = 
         password.length > 0 &&
@@ -27,7 +21,7 @@ function Signup(){
         }
         setIsError("")
         setIsLoading(true);
-        fetch("backendUrl",{
+        fetch(`${API_URL}/signup`,{
             method: "POST",
             headers : {
                 "Content-Type": "application/json",
@@ -42,28 +36,23 @@ function Signup(){
         .then( r => {
             if (r.ok){
                 r.json().then(() =>{
-                    setFormData(initialFormData);
+                    setUsername("");
+                    setEmail("");
+                    setPassword("");
+                    setPasswordConfirmation("");
                     setIsLoading(false);
-                    setIsError(false);
+                    setIsError("");
                 })
             } else{
-                r.json().then(error =>{
+                r.json().then(data => {
+                  
                     setIsLoading(false);
-                    setIsError(error)
+                    setIsError(data.error);
                 })
             }
         })
     }
-    // function handleChange(e){
-    //     const name = e.target.name;
-    //     const value = e.target.value;
-
-    //     setFormData({
-    //         ...formData,
-    //         [name]:value,
-    //     })
-
-    // }
+   
 
     return(
         <div className="signupDiv">
@@ -76,6 +65,7 @@ function Signup(){
                     placeholder="Enter username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required 
                 />
                 <label htmlFor="email">Email:</label>
                 <input 
@@ -85,6 +75,7 @@ function Signup(){
                     placeholder="Enter email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required 
                 />
                 <label htmlFor="password">Enter Password:</label>
                 <input 
@@ -94,8 +85,9 @@ function Signup(){
                     placeholder="Enter password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required 
                 />
-                <lable htmlFor="passwordConfirmation">Password Confirmation</lable>
+                <label htmlFor="passwordConfirmation">Password Confirmation</label>
                 <input
                     id="passwordConfirmation"
                     name="passwordConfirmation"
@@ -103,11 +95,12 @@ function Signup(){
                     value={passwordConfirmation}
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     placeholder="Password Confirmation"
+                    required 
                 />
-                {passwordConfirmation > 0 && !isMatch && (
+                {passwordConfirmation.length > 0 && !isMatch && (
                     <p>Passwords do not Match!!</p>
                 )}
-                {isError && <p >{isError}</p>}
+                {isError && <p style={{color:"red"}}>{isError}</p>}
                 <button type="submit" disabled={!isMatch}>Sign Up</button>
             </form>
         </div>
