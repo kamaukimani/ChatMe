@@ -4,6 +4,7 @@ from .config import Config
 from .models import *
 from .routes import * 
 from flask_restful import Api
+from flask_cors import CORS
 
 def create_app():
 
