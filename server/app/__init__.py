@@ -18,5 +18,7 @@ def create_app():
     api=Api(app)
 
     api.add_resource(Signup,'/signup',endpoint="signup")
+    api.add_resource(Login,'/login',endpoint="login")
+    api.add_resource(CheckSession,'/check_session',endpoint="check_session")
 
     return app
