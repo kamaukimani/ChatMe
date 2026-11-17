@@ -15,6 +15,6 @@ class User(db.Model,SerializerMixin):
 
     messages:Mapped[List["Message"]]=relationship(back_populates="user",cascade="all,delete-orphan")
 
-    def __repre__(self):
+    def __repr__(self):
 
         return f"<User {self.id}, {self.username}>"
