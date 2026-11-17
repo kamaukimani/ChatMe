@@ -8,7 +8,7 @@ class User(db.Model,SerializerMixin):
 
     serialize_rules=("-messages.user",)
 
-    id:Mapped[int]=mapped_column(promary_key=True)
+    id:Mapped[int]=mapped_column(primary_key=True)
     username:Mapped[str]=mapped_column(unique=True)
     email:Mapped[str]=mapped_column(unique=True)
     password:Mapped[str]
