@@ -45,4 +45,42 @@ class Signup(Resource):
             response,201
         )
         
+class Login(Resource):
+    def post(self):
+        data=request.get_json()
+
+        required_fields=["email","password"]
+
+        if not all(data.get(field) for field in required_fields):
+            return {"error":"All fields are required"},400
+        user=User.query.filter(User.email == data["email"]).first()
+
+        if user is None:
+            return {"error":"Invalid password or email"},422
+        password=data.get("password")
+        password_check=bcrypt.check_password_hash(user.password,password)
+
+        if password_check:
+            session["user_id"]=user.id 
+            response=user.to_dict(rules=("-password",))
+            
+
+            return make_response(
+                response,
+                200
+            )
+        return {"error":"Invalid password or email"},422
+
+class CheckSession(Resource):
+    def get(self):
         
+        if  not session.get("user_id"):
+            return {"message":"Unauthorized"},401
+        user=User.query.filter_by(id = session["user_id"]).first()
+
+        response=user.to_dict(rules=("-password"))
+
+        return make_response(
+            response,
+            200
+        )
