@@ -17,7 +17,7 @@ class Message(db.Model,SerializerMixin):
 
     user_id:Mapped[int]=mapped_column(ForeignKey("users.id"))
 
-    user:Mapped["Message"]=relationship(back_populates="messages")
+    user:Mapped["User"]=relationship(back_populates="messages")
 
 
     def __repr__(self):
