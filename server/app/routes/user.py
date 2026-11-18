@@ -84,3 +84,9 @@ class CheckSession(Resource):
             response,
             200
         )
+
+class Logout(Resource):
+    def delete(self):
+        session["user_id"]=None
+
+        return {},204
