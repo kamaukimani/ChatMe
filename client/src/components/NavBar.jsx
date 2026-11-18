@@ -14,8 +14,8 @@ function NavBar(props){
         })
     }
     return (
-        <div>
-            <button onClick={handleLogout} className="logout">Logout</button>
+        <div className="logout">
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }
