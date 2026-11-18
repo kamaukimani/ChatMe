@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import {Routes, Route} from 'react-router-dom';
+import NavBar from './NavBar';
 function App(){
         const API_URL="http://localhost:5000"
 
@@ -22,6 +23,7 @@ function App(){
         if (!user) return <Login API_URL={API_URL} onLogin={setUser}/>;
     return(
         <main>
+            <NavBar />
             {user ? (
                 <h1>Welcome {user} to ChatMe application</h1>
             ) : (null)}
