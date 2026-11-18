@@ -19,3 +19,22 @@
   align-items: center;
   background: grey;
 }
+.logo {
+  height: 100px;
+  /* width:100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  height : 100%;
+  animation: spin 4s infinite linear;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
