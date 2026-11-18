@@ -40,6 +40,7 @@ function LoginForm({onLogin, API_URL}){
             }
         })
         .catch(err => {
+            setIsloading(false);
             setError("Check your Network connectivity");
         })
     }

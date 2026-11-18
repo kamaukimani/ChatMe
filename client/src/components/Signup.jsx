@@ -61,6 +61,7 @@ function Signup({API_URL, onLogin}){
         .catch(err => {
             // console.log(err)
             setIsError("Check your Network connection")
+            setIsLoading(false);
         })
     }
    
