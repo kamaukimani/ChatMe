@@ -78,7 +78,7 @@ class CheckSession(Resource):
             return {"message":"Unauthorized"},401
         user=User.query.filter_by(id = session["user_id"]).first()
 
-        response=user.to_dict(rules=("-password"))
+        response=user.to_dict(rules=("-password",))
 
         return make_response(
             response,
