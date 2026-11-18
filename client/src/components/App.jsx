@@ -1,7 +1,7 @@
 import Signup from './Signup';
 import LoginForm from './LoginForm';
 import React, {useEffect, useState} from 'react';
-
+import Home from '../pages/Home';
 function App(){
         const API_URL="http://localhost:5000"
 
@@ -25,6 +25,7 @@ function App(){
 
             <Signup API_URL={API_URL}/>
             <LoginForm API_URL={API_URL} onLogin={setIsUser}/>
+            <Home />
         </div>
     )
 }
