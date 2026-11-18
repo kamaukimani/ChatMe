@@ -23,7 +23,7 @@ function App(){
         if (!user) return <Login API_URL={API_URL} onLogin={setUser}/>;
     return(
         <main>
-            <NavBar />
+            <NavBar API_URL={API_URL} onLogin={setUser}/>
             {user ? (
                 <h1>Welcome {user} to ChatMe application</h1>
             ) : (null)}
