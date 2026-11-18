@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import logo from '../assets/loading.png'
 
 function LoginForm({onLogin, API_URL}){
     const initialFormData={
@@ -7,12 +8,15 @@ function LoginForm({onLogin, API_URL}){
     };
     const [formData,setFormData] = useState(initialFormData);
     const [error,setError] = useState("");
+    const [isLoading,setIsloading] = useState(false);
+    
 
     const isPassword = formData.password.length > 0;
 
     function handleSubmit(e){
         e.preventDefault()
         setError("");
+        setIsloading(true);
         fetch(`${API_URL}/login`,{
             method: "POST",
             headers: {
@@ -22,6 +26,7 @@ function LoginForm({onLogin, API_URL}){
             body: JSON.stringify(formData)
         })
         .then(r => {
+            setIsloading(false);
             if(r.ok) {
                 r.json().then(data => {
                     onLogin(data.username);
@@ -35,7 +40,7 @@ function LoginForm({onLogin, API_URL}){
             }
         })
         .catch(err => {
-            setError(err);
+            setError("Check your Network connectivity");
         })
     }
 
@@ -49,10 +54,16 @@ function LoginForm({onLogin, API_URL}){
         })
     }
 
+    if (isLoading) return(
+        <div className="logo">
+            <img src={logo} alt="Loading..." />
+        </div>
+    )
 
     return (
+
         <div className="signupDiv">
-            <form onSubmit={handleSubmit} className="signup">
+             <form onSubmit={handleSubmit} className="signup">
                 <h3>Log In</h3>
                 <label htmlFor="email">Email</label>
                 <input 
@@ -70,10 +81,11 @@ function LoginForm({onLogin, API_URL}){
                     value={formData.password}
                     onChange={handleChange}
                 />
-                {error && <p>{error}</p>}
+                {error && <p style={{color:"red"}}>{error}</p>}
                 <button type="submit" disabled={!isPassword}>Login</button>
             </form>
         </div>
+    
     )
 }
 export default LoginForm;
