@@ -18,7 +18,7 @@ function Login({API_URL, onLogin}){
             </>
         ) : (
             <>
-                <Signup API_URL={API_URL}/>
+                <Signup API_URL={API_URL} onLogin={onLogin}/>
                 <Divider />
                 <P>
                     Already have an account? &nbsp;
