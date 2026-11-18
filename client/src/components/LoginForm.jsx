@@ -51,8 +51,8 @@ function LoginForm({onLogin, API_URL}){
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="signupDiv">
+            <form onSubmit={handleSubmit} className="signup">
                 <h3>Log In</h3>
                 <label htmlFor="email">Email</label>
                 <input 
