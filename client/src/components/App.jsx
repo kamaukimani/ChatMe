@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import {Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
+import Profile from '../pages/Profile';
 function App(){
         const API_URL="http://localhost:5000"
 
@@ -15,7 +16,7 @@ function App(){
             })
             .then( r => {
                 if(r.ok){
-                    r.json().then(user => setUser(user.username))
+                    r.json().then(user => setUser(user))
                 }
             })
         },[])
@@ -24,13 +25,14 @@ function App(){
     return(
         <main>
             <NavBar API_URL={API_URL} onLogin={setUser}/>
-            {user ? (
-                <h1>Welcome {user} to ChatMe application</h1>
-            ) : (null)}
             <Routes>
                 <Route 
                     path="/"
-                    element={<Home />}
+                    element={<Home user={user} API_URL={API_URL}/>}
+                />
+                <Route 
+                    path="/profile"
+                    element={<Profile user={user}/>}
                 />
             </Routes>
         
