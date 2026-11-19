@@ -52,11 +52,17 @@ function Home({user, API_URL}){
             ):(
                 <p>Loading messages...</p>
             )} */}
-            {
-                <ol>
-                    {messageList}
-                </ol>
-            }
+            
+                {
+                    messages.length > 0 ? (
+                        <ol>
+                            {messageList}
+                        </ol>
+                    ) : (
+                        <p>No messages yet</p>
+                    )
+                }
+            
             
         </main>
     )
