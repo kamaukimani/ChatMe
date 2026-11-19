@@ -8,3 +8,11 @@ class Messages(Resource):
         messages=[message.to_dict(rules=("-user",)) for message in Message.query.all()]
 
         return make_response(messages,200)
+
+class MessagesByUser(Resource):
+    def get(self,id):
+        messages = [message.to_dict(rules=("-user",)) 
+        for message in Message.query.filter_by(user_id = id).order_by(Message.updated_at.desc()).all()
+        ]
+
+        return make_response(messages,200)
