@@ -24,13 +24,10 @@ function App(){
     return(
         <main>
             <NavBar API_URL={API_URL} onLogin={setUser}/>
-            {user ? (
-                <h1>Welcome {user} to ChatMe application</h1>
-            ) : (null)}
             <Routes>
                 <Route 
                     path="/"
-                    element={<Home />}
+                    element={<Home user={user}/>}
                 />
             </Routes>
         
