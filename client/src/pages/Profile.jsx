@@ -2,20 +2,21 @@ function Profile({user}){
 
     
     const {email,username} = user;
-    console.log(email);
-    console.log(username);
+    // console.log(email);
+    // console.log(username);
     return(
         <div className="profile">
             <h2>{username}</h2>
             <p className="p">
-                Username:&nbsp;
-                <button>{username}</button>
+                <span>Username:</span>
+                <button className="button">{username}</button>
             </p>
             
             <p>
-                Email:&nbsp;
-                <button>{email}</button>
+                <span>Email:</span>
+                <button className="button">{email}</button>
             </p>
+            <button className="btn">Support</button>
         </div>
     )
 }
