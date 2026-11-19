@@ -21,5 +21,6 @@ def create_app():
     api.add_resource(Login,'/login',endpoint="login")
     api.add_resource(CheckSession,'/check_session',endpoint="check_session")
     api.add_resource(Logout,'/logout',endpoint="logout")
+    api.add_resource(Messages,'/messages',endpoint="messages")
 
     return app
