@@ -3,23 +3,24 @@ function Home({user, API_URL}){
     
 
     const [search,setSearch] = useState("");
-    const [isMessage,setIsMessage] = useState(false);
-    const [messages,setMessages] = useState([]);
+    // const [isMessage,setIsMessage] = useState(false);
+    // const [messages,setMessages] = useState([]);
 
-    const {id,username} = user;
+    const {id,username,messages} = user;
+    // console.log(user.messages);
     
-    useEffect( () => {
+    // useEffect( () => {
     
-        setIsMessage(false);
-        fetch(`${API_URL}/messages/user/${id}`,{
-            //credentials: "include",
-        })
-        .then( r => r.json())
-        .then(data =>{
-            setMessages(data);
-            setIsMessage(true);
-        })
-    },[])
+    //     setIsMessage(false);
+    //     fetch(`${API_URL}/messages/user/${id}`,{
+    //         //credentials: "include",
+    //     })
+    //     .then( r => r.json())
+    //     .then(data =>{
+    //         setMessages(data);
+    //         setIsMessage(true);
+    //     })
+    // },[])
 
     const messageList = messages.map((message)=>(
         <li key={message.id}>{message.body}</li>
@@ -38,7 +39,7 @@ function Home({user, API_URL}){
                 placeholder="Search username"
             />
         
-            {isMessage ? (
+            {/* {isMessage ? (
                 <>
                     {messages.length > 0 ? (
                         <ol>
@@ -50,7 +51,12 @@ function Home({user, API_URL}){
                 </>
             ):(
                 <p>Loading messages...</p>
-            )}
+            )} */}
+            {
+                <ol>
+                    {messageList}
+                </ol>
+            }
             
         </main>
     )
