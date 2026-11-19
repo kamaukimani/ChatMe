@@ -29,7 +29,7 @@ function LoginForm({onLogin, API_URL}){
             setIsloading(false);
             if(r.ok) {
                 r.json().then(data => {
-                    onLogin(data.username);
+                    onLogin(data);
                     setFormData(initialFormData);
                     setError("");
                 })
