@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 function Home({user}){
     
-    const {id,username,messages} = user;
-    console.log(messages);
 
     const [search,setSearch] = useState("");
+    
+    const {id,username,messages} = user;
 
     const message = messages.map((message,index)=>(
         <li key={index}>{message.body}</li>
     ))
-    if (!user) return <Login API_URL={API_URL} onLogin={setUser}/>;
+    
     return(
         <main className="home">
              {user ? (
@@ -22,9 +22,17 @@ function Home({user}){
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search username"
             />
-            <ol>
-                {message}
-            </ol>
+        
+            {
+                messages.length > 0 ? (
+                    <ol>
+                        {message}
+                    </ol>
+                ) : (
+                    <p>No messages yet</p>
+                )
+            }
+            
         </main>
     )
 }
