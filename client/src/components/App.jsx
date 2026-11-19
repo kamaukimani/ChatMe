@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import {Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
+import Profile from '../pages/Profile';
 function App(){
         const API_URL="http://localhost:5000"
 
@@ -28,6 +29,10 @@ function App(){
                 <Route 
                     path="/"
                     element={<Home user={user} API_URL={API_URL}/>}
+                />
+                <Route 
+                    path="/profile"
+                    element={<Profile />}
                 />
             </Routes>
         
