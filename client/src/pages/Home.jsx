@@ -11,7 +11,7 @@ function Home({user, API_URL}){
     useEffect( () => {
     
         setIsMessage(false);
-        fetch(`${API_URL}/messages/${id}`,{
+        fetch(`${API_URL}/messages/user/${id}`,{
             //credentials: "include",
         })
         .then( r => r.json())
