@@ -10,7 +10,7 @@ def create_app():
 
     app=Flask(__name__)
     app.config.from_object(Config)
-    CORS(app,origins=["http://localhost:3000","http://127.0.0.1:3000"],supports_credentials=True)
+    CORS(app,origins=["http://localhost:3000","http://127.0.0.1:3000","http://10.85.238.96:3000"],supports_credentials=True)
 
     db.init_app(app)
     migrate.init_app(app,db)
