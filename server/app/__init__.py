@@ -22,6 +22,6 @@ def create_app():
     api.add_resource(CheckSession,'/check_session',endpoint="check_session")
     api.add_resource(Logout,'/logout',endpoint="logout")
     api.add_resource(Messages,'/messages',endpoint="messages")
-    api.add_resource(MessagesByUser,'/messages/<int:id>',endpoint="message_by_user")
+    api.add_resource(MessagesByUser,'/messages/user/<int:id>',endpoint="message_by_user")
 
     return app
