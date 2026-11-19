@@ -110,8 +110,21 @@ body {
   background-color: green;
   justify-content: center;
   padding: 5px;
+  overflow:hidden;
+  gap:8px;
 }
-.profile button{
+.button{
   background:none;
   border:none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn{
+  width: 90%;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 5px;
+  background:green;
+  margin-bottom: 10px;
 }
