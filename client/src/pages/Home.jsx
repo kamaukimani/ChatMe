@@ -1,13 +1,28 @@
-import React, {useState} from 'react';
-function Home({user}){
+import React, {useState, useEffect} from 'react';
+function Home({user, API_URL}){
     
 
     const [search,setSearch] = useState("");
-    
-    const {id,username,messages} = user;
+    const [isMessage,setIsMessage] = useState(false);
+    const [messages,setMessages] = useState([]);
 
-    const message = messages.map((message,index)=>(
-        <li key={index}>{message.body}</li>
+    const {id,username} = user;
+    
+    useEffect( () => {
+    
+        setIsMessage(false);
+        fetch(`${API_URL}/messages/${id}`,{
+            //credentials: "include",
+        })
+        .then( r => r.json())
+        .then(data =>{
+            setMessages(data);
+            setIsMessage(true);
+        })
+    },[])
+
+    const messageList = messages.map((message)=>(
+        <li key={message.id}>{message.body}</li>
     ))
     
     return(
@@ -23,15 +38,19 @@ function Home({user}){
                 placeholder="Search username"
             />
         
-            {
-                messages.length > 0 ? (
-                    <ol>
-                        {message}
-                    </ol>
-                ) : (
-                    <p>No messages yet</p>
-                )
-            }
+            {isMessage ? (
+                <>
+                    {messages.length > 0 ? (
+                        <ol>
+                            {messageList}
+                        </ol>
+                    ) : (
+                        <p>Oops!...No messages yet</p>
+                    )}
+                </>
+            ):(
+                <p>Loading messages...</p>
+            )}
             
         </main>
     )
