@@ -83,6 +83,7 @@ function LoginForm({onLogin, API_URL}){
                     onChange={handleChange}
                 />
                 {error && <p style={{color:"red"}}>{error}</p>}
+                <br/>
                 <button type="submit" disabled={!isPassword}>Login</button>
             </form>
         </div>
