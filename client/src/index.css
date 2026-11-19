@@ -83,8 +83,12 @@ body {
 }
 
 .home {
-  width: 700px;
+  width: 100%;
   border: 1px solid;
   margin: 5px;
   padding: 5px;
+}
+.home input {
+  border-radius: 5px;
+  padding-left: 5px;
 }
