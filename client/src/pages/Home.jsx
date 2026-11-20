@@ -31,7 +31,7 @@ function Home({user, API_URL, onLogin}){
     
     return(
         <main className="home">
-            <NavBar API_URL={API_URL} onLigin={onLogin}/>
+            <NavBar API_URL={API_URL} onLogin={onLogin}/>
              {user ? (
                 <h1>Welcome {username} to ChatMe application</h1>
             ) : (null)}
