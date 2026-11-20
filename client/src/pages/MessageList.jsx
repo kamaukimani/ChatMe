@@ -1,5 +1,5 @@
 
-function MessageCard({msg}){
+function MessageList({msg}){
     console.log(msg)
     return (
         <div>
@@ -8,4 +8,4 @@ function MessageCard({msg}){
     )
 }
 
-export default MessageCard;
+export default MessageList;
