@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import MessageList from './MessageList';
 function Home({user, API_URL}){
     
 
@@ -23,8 +24,9 @@ function Home({user, API_URL}){
     // },[])
 
     const messageList = messages.map((message)=>(
-        <li key={message.id}>{message.body}</li>
+        <MessageList key={message.id} msg={message} />
     ))
+    console.log("message",messageList);
     
     return(
         <main className="home">
