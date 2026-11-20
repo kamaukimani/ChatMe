@@ -26,7 +26,7 @@ function Home({user, API_URL}){
     const messageList = messages.map((message)=>(
         <MessageList key={message.id} msg={message} />
     ))
-    console.log("message",messageList);
+    // console.log("message",messageList);
     
     return(
         <main className="home">
@@ -57,9 +57,9 @@ function Home({user, API_URL}){
             
                 {
                     messages.length > 0 ? (
-                        <ol>
-                            {messageList}
-                        </ol>
+
+                        <div>{messageList}</div>
+                        
                     ) : (
                         <p>No messages yet</p>
                     )
