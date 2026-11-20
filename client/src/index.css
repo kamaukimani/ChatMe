@@ -134,16 +134,18 @@ body {
   background-color: red;
   text-decoration: none;
   padding: 10px;
-  border-radius:5px;
+  border-radius:10px;
   display: flex;
   justify-content: center;
-  margin: 5px;
+  margin: 10px 5px;
   
 
 }
 #link {
-  width: 70%;
+  width: 80%;
   /* gap: 50px; */
   display: flex;
   flex-direction: column;
+ margin-left: 10px;
+ /* margin-top:5px; */
 }
