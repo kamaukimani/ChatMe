@@ -62,7 +62,7 @@ class Login(Resource):
 
         if password_check:
             session["user_id"]=user.id 
-            response=user.to_dict(rules=("-password",))
+            response=user.to_dict(rules=("-password","-messages.contact.password",))
             
 
             return make_response(
