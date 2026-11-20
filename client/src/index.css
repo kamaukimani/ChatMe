@@ -128,3 +128,22 @@ body {
   background:green;
   margin-bottom: 10px;
 }
+.link {
+  border: 1px solid white;
+  color:black;
+  background-color: red;
+  text-decoration: none;
+  padding: 10px;
+  border-radius:5px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  
+
+}
+#link {
+  width: 70%;
+  /* gap: 50px; */
+  display: flex;
+  flex-direction: column;
+}
