@@ -16,3 +16,15 @@ class MessagesByUser(Resource):
         ]
 
         return make_response(messages,200)
+
+class MessageById(Resource):
+    def get(self,id):
+        message=Message.query.filter(Message.id == id).first()
+        if message is None:
+            return {"error":"Message not found"},404
+        response=message.to_dict(rules=("-user","-contact.password",))
+
+        return make_response(
+            response,
+            200
+        )
