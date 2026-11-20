@@ -3,8 +3,8 @@ function MessageList({msg}){
     console.log(msg)
     const {username} =msg.contact;
     return (
-        <div>
-            <Link>{username}</Link>
+        <div id="link">
+            <Link className="link">{username}</Link>
         </div>
     )
 }
