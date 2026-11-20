@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MessageList from './MessageList';
-function Home({user, API_URL}){
+import NavBar from '../components/NavBar';
+function Home({user, API_URL, onLogin}){
     
 
     const [search,setSearch] = useState("");
@@ -30,6 +31,7 @@ function Home({user, API_URL}){
     
     return(
         <main className="home">
+            <NavBar API_URL={API_URL} onLigin={onLogin}/>
              {user ? (
                 <h1>Welcome {username} to ChatMe application</h1>
             ) : (null)}
