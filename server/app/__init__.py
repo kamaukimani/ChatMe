@@ -24,5 +24,6 @@ def create_app():
     api.add_resource(Messages,'/messages',endpoint="messages")
     api.add_resource(MessagesByUser,'/messages/user/<int:id>',endpoint="message_by_user")
     api.add_resource(Profile,'/profile/<int:id>',endpoint="profile")
+    api.add_resource(MessageById,'/messages/<int:id>',endpoint="message_by_id")
 
     return app
