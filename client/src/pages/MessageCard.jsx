@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import ReactMarkdown from "react-markdown";
 function MessageCard({API_URL}){
 
     const [message,setMessage] = useState({});
     const [isMessage,setIsMessage] = useState(false);
-    const {id} = useParams()
+    const {id} = useParams();
+    const navigate = useNavigate();
     console.log(id);
 
     useEffect(()=> {
@@ -30,7 +31,7 @@ function MessageCard({API_URL}){
     const [,time] = isDate
     return(
         <>
-            
+            <button onClick={() => navigate("/")}>Back</button>
             <div className="message">
                 <h5>{contact.username}</h5>
                 <ReactMarkdown>{body}</ReactMarkdown>
