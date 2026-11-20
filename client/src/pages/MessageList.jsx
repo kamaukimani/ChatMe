@@ -1,9 +1,10 @@
-
+import {Link} from "react-router-dom";
 function MessageList({msg}){
     console.log(msg)
+    const {username} =msg.contact;
     return (
         <div>
-            <h2>hello</h2>
+            <Link>{username}</Link>
         </div>
     )
 }
