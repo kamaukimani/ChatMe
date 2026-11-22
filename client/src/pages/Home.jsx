@@ -7,7 +7,7 @@ function Home({user, API_URL, onLogin}){
     const [search,setSearch] = useState("");
     // const [isMessage,setIsMessage] = useState(false);
     // const [messages,setMessages] = useState([]);
-
+    console.log(user);
     const {id,username,messages} = user;
     // console.log(user.messages);
     
