@@ -9,6 +9,8 @@ class Messages(Resource):
 
         return make_response(messages,200)
 
+   
+
 class MessagesByUser(Resource):
     def get(self):
         current_user= session["user_id"]
@@ -17,6 +19,31 @@ class MessagesByUser(Resource):
         ]
 
         return make_response(messages,200)
+
+    def post(self):
+        current_user= session["user_id"]
+        data=request.get_json()
+        body=data.get("body")
+        #sender_id=data.get("sender_id")
+        recipient_id=data.get("recipient_id")
+
+        if not (body and current_user and recipient_id):
+            return {"error":"Provide all fields"},400
+
+        new_message=Message(
+            body=body,
+            sender_id=current_user,
+            recipient_id=recipient_id,
+        )
+        db.session.add(new_message)
+        db.session.commit()
+
+        response=new_message.to_dict(rules=("-recipient.email","-recipient.id","-sender",))
+
+        return make_response(
+            response,
+            200
+        )
 
 class MessageById(Resource):
     def get(self,id):
