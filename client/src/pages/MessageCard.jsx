@@ -6,7 +6,7 @@ function MessageCard({API_URL}){
 
     const [messages,setMessages] = useState([]);
     const [isMessage,setIsMessage] = useState(false);
-    const [bodyMessage,setBodyMessage] = useState("");
+
     const {id} = useParams();
     const navigate = useNavigate();
     console.log(id);
@@ -27,19 +27,7 @@ function MessageCard({API_URL}){
         })
     },[])
     if(!isMessage) return <h1>Loading...</h1>
-    //console.log(message);
-    //const {body, recipient, updated_at:updatedAt,recipient_id:receiver,sender_id:sender} = message
-    // console.log(date);
-    // const isDate = date.split(" ")
-    // // console.log(isDate)
-    // const [,time] = isDate
-    //console.log(updatedAt);
-   // const formattedDate = updatedAt !=null ? new Date(updatedAt).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}) : "";
     
-    // function handleAddMessage(e){
-    //     e.preventDefault();
-
-    // }
     const message = messages.map(msg =>{
         //console.log(msg);
         const createdAt= new Date(msg.created_at).toLocaleString([],{hour:"2-digit",minute:"2-digit"})
@@ -57,6 +45,10 @@ function MessageCard({API_URL}){
             </>
         )
     })
+    function handleAddMessage(newMessage){
+        const updatedMessages= [...messages,newMessage];
+        setMessages(updatedMessages);
+    }
     return(
         <>
             <button 
@@ -69,7 +61,7 @@ function MessageCard({API_URL}){
                 {message}
                
             </div>
-            <NewMessage />
+            <NewMessage receiver={id} onAddMessage={handleAddMessage} API_URL={API_URL}/>
         </>
     )
 }
