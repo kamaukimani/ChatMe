@@ -32,8 +32,14 @@ class User(db.Model,SerializerMixin):
     email:Mapped[str]=mapped_column(unique=True)
     password:Mapped[str]
 
-    sent_messages:Mapped[List["Message"]]=relationship(back_populates="sender",cascade="all,delete-orphan")
-    received_messages:Mapped[List["Message"]]=relationship(back_populates="recipient",cascade="all,delete-orphan")
+    sent_messages:Mapped[List["Message"]]=relationship(
+        foreign_keys="Message.sender_id",
+        back_populates="sender",
+        cascade="all,delete-orphan")
+    received_messages:Mapped[List["Message"]]=relationship(
+        foreign_keys="Message.recipient_id",
+        back_populates="recipient",
+        cascade="all,delete-orphan")
 
     
     def __repr__(self):
