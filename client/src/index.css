@@ -158,3 +158,8 @@ body {
   margin-left:0%;
   margin-top: 2px;
 }
+.date {
+  display: flex;
+  justify-content: right;
+  padding-right: 10px;
+}
