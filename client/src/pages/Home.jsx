@@ -1,6 +1,7 @@
 import NavBar from '../components/NavBar';
 import React, {useState, useEffect} from 'react';
 import MessageList from './MessageList';
+import Contact from "./Contact";
 
 function Home({user, API_URL, onLogin}){
     const [search,setSearch] = useState("");
@@ -51,6 +52,7 @@ function Home({user, API_URL, onLogin}){
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search username"
             />
+            <Contact />
             {isMessages ? (
                 <>
                     {messages.length > 0 ? (
