@@ -25,7 +25,15 @@ from sqlalchemy.ext.associationproxy import association_proxy
 class User(db.Model,SerializerMixin):
     __tablename__="users"
 
-    serialize_rules=("-sent_messages.sender","-received_messages.recipient",)
+    serialize_rules=(
+        "-password",
+        "-sent_messages.sender",
+        "-sent_messages.recipient.sent_messages",
+        "-sent_messages.recipient.received_messages",
+        "-received_messages.recipient",
+        "-received_messages.sender.sent_messages",
+        "-received_messages.sender.received_messages",
+    )
 
     id:Mapped[int]=mapped_column(primary_key=True)
     username:Mapped[str]=mapped_column(unique=True)

@@ -29,7 +29,14 @@ from sqlalchemy import func,ForeignKey
 class Message(db.Model,SerializerMixin):
     __tablename__="messages"
 
-    serialize_rules=("-sender.sent_messages","-recipient.received_messages",)
+    serialize_rules = (
+        "-sender.password",
+        "-sender.sent_messages",
+        "-sender.received_messages",
+        "-recipient.password",
+        "-recipient.sent_messages",
+        "-recipient.received_messages",
+    )
 
     id:Mapped[int]=mapped_column(primary_key=True)
     body:Mapped[str]
