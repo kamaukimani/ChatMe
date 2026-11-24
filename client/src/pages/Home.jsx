@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import MessageList from './MessageList';
 import Contact from "./Contact";
 
-function Home({user, API_URL, onLogin}){
+function Home({user, API_URL, onLogin, onUsername}){
     const [search,setSearch] = useState("");
     const [messages,setMessages] = useState([]);
     const [error,setError] = useState("");
@@ -13,7 +13,7 @@ function Home({user, API_URL, onLogin}){
 
     useEffect( () => {
         setError("");
-        fetch(`${API_URL}/messages/user`,{
+        fetch(`${API_URL}/messages`,{
             credentials: "include",
         })
         .then(r => {
