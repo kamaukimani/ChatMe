@@ -7,7 +7,7 @@ function MessageCard({API_URL}){
     const [isMessage,setIsMessage] = useState(false);
     const {id} = useParams();
     const navigate = useNavigate();
-    console.log(id);
+    //console.log(id);
 
     useEffect(()=> {
         setIsMessage(false);
@@ -15,7 +15,7 @@ function MessageCard({API_URL}){
         .then(r =>{
             if(r.ok){
                 r.json().then(data =>{
-                    console.log(data);
+                    //console.log(data);
                     setMessage(data)
                     setIsMessage(true);
                 })
@@ -23,8 +23,8 @@ function MessageCard({API_URL}){
         })
     },[])
     if(!isMessage) return <h1>Loading...</h1>
-    console.log(message);
-    const {body, contact, updated_at:date} = message
+    //console.log(message);
+    const {body, recipient, updated_at:date} = message
     // console.log(date);
     const isDate = date.split(" ")
     // console.log(isDate)
@@ -33,7 +33,7 @@ function MessageCard({API_URL}){
         <>
             <button onClick={() => navigate("/")}>Back</button>
             <div className="message">
-                <h5>{contact.username}</h5>
+                <h5>{recipient.username}</h5>
                 <ReactMarkdown>{body}</ReactMarkdown>
                 <small>
                     <p>
