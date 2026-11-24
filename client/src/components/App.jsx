@@ -22,6 +22,7 @@ function App(){
         },[])
 
         if (!user) return <Login API_URL={API_URL} onLogin={setUser}/>;
+        console.log(user.id);
     return(
         <main>
             
@@ -36,7 +37,7 @@ function App(){
                 />
                 <Route 
                     path="/messages/:id"
-                    element={<MessageCard API_URL={API_URL}/>}
+                    element={<MessageCard API_URL={API_URL} currentUser={user}/>}
                 />
             </Routes>
         
