@@ -9,6 +9,7 @@ function App(){
         const API_URL="http://localhost:5000"
 
         const [user,setUser] = useState(null);
+        const [userName,setUserName] = useState(null);
 
         useEffect( () => {
             fetch(`${API_URL}/check_session`,{
@@ -29,7 +30,9 @@ function App(){
             <Routes>
                 <Route 
                     path="/"
-                    element={<Home user={user} API_URL={API_URL} onLogin={setUser}/>}
+                    element={<Home user={user} API_URL={API_URL} onLogin={setUser}
+                    onUser={setUserName}
+                    />}
                 />
                 <Route 
                     path="/profile"
@@ -37,7 +40,7 @@ function App(){
                 />
                 <Route 
                     path="/messages/:id"
-                    element={<MessageCard API_URL={API_URL} currentUser={user}/>}
+                    element={<MessageCard API_URL={API_URL} currentUser={user} userName={userName}/>}
                 />
             </Routes>
         
