@@ -23,7 +23,7 @@ class MessageById(Resource):
         message=Message.query.filter(Message.id == id).first()
         if message is None:
             return {"error":"Message not found"},404
-        response=message.to_dict(rules=("-user","-contact.password",))
+        response=message.to_dict(rules=("-recipient.email","-recipient.id","-sender",))
 
         return make_response(
             response,
