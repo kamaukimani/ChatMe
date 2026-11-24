@@ -1,5 +1,5 @@
 from app.db import db 
-from app.models import User,Message,Contact
+from app.models import User,Message #,Contact
 from faker import Faker 
 from app import create_app
 from flask_bcrypt import Bcrypt 
@@ -75,27 +75,27 @@ def create_users():
         users.append(user)
     return users
 
-def create_contacts():
-    contacts=[]
-    for _ in range(10):
-        contact=Contact(
-            username=fake.unique.first_name(),
-            email=fake.unique.email(),
-        )
-        password=fake.password()
-        password_hash=bcrypt.generate_password_hash(password).decode("utf-8")
-        contact.password=password_hash
+# def create_contacts():
+#     contacts=[]
+#     for _ in range(10):
+#         contact=Contact(
+#             username=fake.unique.first_name(),
+#             email=fake.unique.email(),
+#         )
+#         password=fake.password()
+#         password_hash=bcrypt.generate_password_hash(password).decode("utf-8")
+#         contact.password=password_hash
             
-        contacts.append(contact)
-    return contacts
+#         contacts.append(contact)
+#     return contacts
 
-def create_messages(users,contacts):
+def create_messages(users):
     messages=[]
     for _ in range(100):
         message=Message(
             body=fake.paragraph(nb_sentences=8),
-            user=rc(users),
-            contact=rc(contacts),
+            sender=rc(users),
+            recipient=rc(users),
         )
         messages.append(message)
     return messages
@@ -107,7 +107,7 @@ if __name__ == "__main__":
             print("Deleting tables")
             Message.query.delete()
             User.query.delete()
-            Contact.query.delete()
+            # Contact.query.delete()
 
 
             print("Adding users...")
@@ -116,14 +116,14 @@ if __name__ == "__main__":
             db.session.flush()
 
 
-            print("Adding contacts...")
-            contacts=create_contacts()
-            db.session.add_all(contacts)
-            db.session.flush()
+            # print("Adding contacts...")
+            # contacts=create_contacts()
+            # db.session.add_all(contacts)
+            # db.session.flush()
 
 
             print("Adding messages...")
-            messages=create_messages(users,contacts)
+            messages=create_messages(users)
             db.session.add_all(messages)
 
             db.session.commit()
