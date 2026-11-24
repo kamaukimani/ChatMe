@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import ReactMarkdown from "react-markdown";
+import NewMessage from "./NewMessage";
 function MessageCard({API_URL}){
 
     const [messages,setMessages] = useState([]);
@@ -8,7 +9,7 @@ function MessageCard({API_URL}){
     const [bodyMessage,setBodyMessage] = useState("");
     const {id} = useParams();
     const navigate = useNavigate();
-    //console.log(id);
+    console.log(id);
 
     useEffect(()=> {
         setIsMessage(false);
@@ -40,7 +41,7 @@ function MessageCard({API_URL}){
 
     // }
     const message = messages.map(msg =>{
-        console.log(msg);
+        //console.log(msg);
         const createdAt= new Date(msg.created_at).toLocaleString([],{hour:"2-digit",minute:"2-digit"})
         return (
             <>
@@ -68,6 +69,7 @@ function MessageCard({API_URL}){
                 {message}
                
             </div>
+            <NewMessage />
         </>
     )
 }
