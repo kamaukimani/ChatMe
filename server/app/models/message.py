@@ -40,8 +40,12 @@ class Message(db.Model,SerializerMixin):
     recipient_id:Mapped[int]=mapped_column(ForeignKey("users.id"))
     
 
-    sender:Mapped["User"]=relationship(back_populates="sent_messages")
-    recipient:Mapped["User"]=relationship(back_populates="received_messages")
+    sender:Mapped["User"]=relationship(
+        foreign_keys=[sender_id],
+        back_populates="sent_messages")
+    recipient:Mapped["User"]=relationship(
+        foreign_keys=[recipient_id],
+        back_populates="received_messages")
 
 
     def __repr__(self):
