@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import MessageList from './MessageList';
 import Contact from "./Contact";
 
-function Home({user, API_URL, onLogin, onUsername}){
+function Home({user, API_URL, onLogin, onUser}){
     const [search,setSearch] = useState("");
     const [messages,setMessages] = useState([]);
     const [error,setError] = useState("");
@@ -56,12 +56,14 @@ function Home({user, API_URL, onLogin, onUsername}){
             {isMessages ? (
                 <>
                     {messages.length > 0 ? (
-                        messages.map(message => (
+                        //messages.map(message => (
                         <MessageList 
-                            key={message.id}
-                            msg={message}
+                            // key={message.id}
+                            // msg={message}
+                            messageArray={messages}
+                            onUser={onUser}
                         />
-                    ))
+                    //))
                     ): (
                         <p>Ooops!...No messages</p>
                     )}
