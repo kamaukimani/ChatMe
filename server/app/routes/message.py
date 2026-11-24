@@ -12,13 +12,23 @@ class Messages(Resource):
    
 
 class MessagesByUser(Resource):
-    def get(self):
-        current_user= session["user_id"]
-        messages = [message.to_dict(rules=("-user",)) 
-        for message in Message.query.filter_by(sender_id = current_user).order_by(Message.updated_at.asc()).all()
-        ]
+    # def get(self):
+    #     current_user= session["user_id"]
+    #     messages = [message.to_dict(rules=("-user",)) 
+    #     for message in Message.query.filter_by(sender_id = current_user).order_by(Message.updated_at.asc()).all()
+    #     ]
 
-        return make_response(messages,200)
+    #     return make_response(messages,200)
+    def get(self,recipient_id):
+        current_user= session["user_id"]
+        messages=Message.query.filter(
+            or_(
+                and_(Message.sender_id == current_user,Message.recipient_id == recipient_id),
+                and_(Message.sender_id == recipient_id,Message.recipient_id == current_user)
+            )
+        ).order_by(Message.updated_at.asc()).all()
+
+        return [msg.to_dict() for msg in messages],200
 
     def post(self):
         current_user= session["user_id"]
