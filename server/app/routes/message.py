@@ -10,9 +10,10 @@ class Messages(Resource):
         return make_response(messages,200)
 
 class MessagesByUser(Resource):
-    def get(self,id):
+    def get(self):
+        current_user= session["user_id"]
         messages = [message.to_dict(rules=("-user",)) 
-        for message in Message.query.filter_by(user_id = id).order_by(Message.updated_at.desc()).all()
+        for message in Message.query.filter_by(sender_id = current_user).order_by(Message.updated_at.asc()).all()
         ]
 
         return make_response(messages,200)
