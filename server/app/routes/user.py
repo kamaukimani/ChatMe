@@ -139,5 +139,19 @@ class Profile(Resource):
             response,
             200
         )
+class AddUser(Resource):
+    def post(self):
+        data=request.get_json()
+        username=data.get("username")
+
+        user = User.query.filter_by(username = username).first()
+        if not user:
+            return {"error":"User not found"},404
+        response= user.to_dict(rules=("-received_messages","-sent_messages",))
+        return make_response(
+            response,
+            200
+        )
+    
 
 
