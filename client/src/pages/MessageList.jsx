@@ -1,13 +1,11 @@
 import {Link} from "react-router-dom";
 import {useState} from 'react';
-function MessageList({messageArray,onUser}){
-    //console.log(msg)
-
-
-    //const {id,username} =msg;
-    //console.log(id)
-    //console.log(messageArray)
-    const users=messageArray.map(user => (
+function MessageList({messageArray,onUser,search}){
+    const displayedUsers= messageArray.filter(message => {
+        return message.username.toLowerCase().includes(search.toLowerCase())
+    }
+    )
+    const users=displayedUsers.map(user => (
                 <div key={user.id}>
                     <Link className="link" to={`/messages/${user.id}`}
                     
