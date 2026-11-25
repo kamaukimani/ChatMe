@@ -26,7 +26,7 @@ function MessageCard({ API_URL, currentUser, userName }) {
             setIsLoading(false);
         })
         .catch(() => setIsLoading(false));
-    }, [API_URL, id]);
+    }, []);
 
     const message = messages.map(msg => {
         const isSentByMe = msg.sender_id === currentUser?.id;
@@ -39,6 +39,13 @@ function MessageCard({ API_URL, currentUser, userName }) {
                 <small>
                     <p className="date">{createdAt}</p>
                 </small>
+                <button className="delete"
+                onClick={() => deleteMessage(msg.id)}
+                >
+                    <span>
+                        🗑
+                    </span>
+                </button>
             </div>
         );
     });
@@ -47,6 +54,17 @@ function MessageCard({ API_URL, currentUser, userName }) {
         setMessages([...messages, newMessage]);
     }
 
+     function handleDelete(id){
+            const updatedMessages= messages.filter(msg => msg.id !== id)
+            setMessages(updatedMessages);
+        }
+    function deleteMessage(id){
+        fetch(`${API_URL}/messages/delete/${id}`,{
+            method: "DELETE",
+            credentials: "include",
+        })
+        handleDelete(id);
+    }
     return (
         <div className="messageCard">
             <div className="username">
