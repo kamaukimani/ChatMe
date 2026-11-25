@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {useState} from 'react';
-function MessageList({messageArray,onUser,search}){
+function MessageList({messageArray,onUser,search, userObj}){
     const displayedUsers= messageArray.filter(message => {
         return message.username.toLowerCase().includes(search.toLowerCase())
     }
@@ -13,10 +13,20 @@ function MessageList({messageArray,onUser,search}){
                     >{user.username}</Link>
                 </div>
             ))
+    console.log(userObj);
+   
     return (
         <div id="link">
-            {users}
-            {/* <p>Hello there</p> */}
+            {
+                Object.keys(userObj).length > 0 ? (
+                    <Link className="link" to={`/messages/${userObj.id}`}
+                        onClick={()=> onUser(userObj.username)}
+                        >{userObj.username}</Link>
+                ) : (
+                    users
+                )
+            }
+            
         </div>
     )
 }
