@@ -13,7 +13,7 @@ function MessageList({messageArray,onUser,search, userObj}){
                     >{user.username}</Link>
                 </div>
             ))
-    console.log(userObj);
+    //console.log(userObj);
    
     return (
         <div id="link">
