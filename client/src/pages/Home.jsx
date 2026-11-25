@@ -62,6 +62,7 @@ function Home({user, API_URL, onLogin, onUser}){
                             // msg={message}
                             messageArray={messages}
                             onUser={onUser}
+                            search={search}
                         />
                     //))
                     ): (
