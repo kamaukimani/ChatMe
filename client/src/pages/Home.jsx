@@ -55,7 +55,12 @@ function Home({user, API_URL, onLogin, onUser}){
                 r.json().then(data=>{
                     setUserObj(data);
                     setUserName("");
+                    setError("");
 
+                })
+            } else {
+                r.json().then(err=>{
+                    setError(err.error);
                 })
             }
         })
@@ -74,8 +79,14 @@ function Home({user, API_URL, onLogin, onUser}){
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search username"
+                style={{borderRadius:"10px",height:"27px"}}
             />
-            <Contact userName={userName} onSetUserName={setUserName} onAddChat={handleAddChat}/>
+            <Contact 
+                error={error}
+                userName={userName} 
+                onSetUserName={setUserName} 
+                onAddChat={handleAddChat}
+            />
             {isMessages ? (
                 <>
                     {messages.length > 0 ? (
