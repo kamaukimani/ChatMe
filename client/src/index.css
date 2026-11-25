@@ -93,19 +93,20 @@ body {
   padding-left: 5px;
 }
 .profile {
-  width: 100%;
+  width: 90%;
   /* border: 1px solid; */
   /* margin: 5px; */
   /* padding: 5px; */
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  align-items: center; 
+  box-sizing:border-box;
 }
 
 .profile p {
   border: 1px solid;
   border-radius: 5px;
-  width:100%;
+  width:60%vw;
   height: 30px;
   background-color: green;
   /* justify-content: center; */
@@ -119,9 +120,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
 }
 .btn{
-  width: 90%;
+  width: 60%vw;
   height: 30px;
   border: 1px solid;
   border-radius: 5px;
@@ -262,4 +264,40 @@ body {
   width: 99%;
   margin-left:5px;
   margin-right: 5px;
+}
+.textarea {
+  display: flex;
+  flex-direction: row;
+}
+.textarea textarea{
+  width:90%;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: grey;
+}
+.textarea button {
+  width: 55px;
+  border: 1px solid red;
+  border-radius: 10px;
+  background-color: green;
+  
+}
+.imgT {
+  height: 20px;
+}
+.editbtn {
+  width: 55px;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: red;
+  margin: 5px;
+  height: 25px;
+
+}
+.span{
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  gap:5px;
 }
