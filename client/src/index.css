@@ -263,3 +263,39 @@ body {
   margin-left:5px;
   margin-right: 5px;
 }
+.textarea {
+  display: flex;
+  flex-direction: row;
+}
+.textarea textarea{
+  width:90%;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: grey;
+}
+.textarea button {
+  width: 55px;
+  border: 1px solid red;
+  border-radius: 10px;
+  background-color: green;
+  
+}
+.imgT {
+  height: 20px;
+}
+.editbtn {
+  width: 55px;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: red;
+  margin: 5px;
+  height: 25px;
+
+}
+.span{
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  gap:5px;
+}
