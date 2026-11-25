@@ -77,7 +77,7 @@ class MessageById(Resource):
         db.session.commit()
 
         return {},204
-    def post(self,id):
+    def patch(self,id):
         message = Message.query.filter(Message.id == id).first()
         if message is None:
             return {"error":"Oops!...No such record in our database"},404
