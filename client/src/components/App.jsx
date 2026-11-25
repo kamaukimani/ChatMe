@@ -23,7 +23,7 @@ function App(){
         },[])
 
         if (!user) return <Login API_URL={API_URL} onLogin={setUser}/>;
-        console.log(user.id);
+       
     return(
         <main>
             

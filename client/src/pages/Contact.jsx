@@ -1,14 +1,14 @@
 import {useState} from 'react';
 
-function Contact(){
-    const [username,setUsername] = useState("");
+function Contact({userName, onSetUserName, onAddChat}){
+   
     return(
-        <form>
+        <form onSubmit={onAddChat}>
             <input 
                     type="text"
                     id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={userName}
+                    onChange={(e) => onSetUserName(e.target.value)}
                     placeholder="Add Contact..."
                 />
             <button>Add</button>
