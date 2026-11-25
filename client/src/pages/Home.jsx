@@ -8,6 +8,8 @@ function Home({user, API_URL, onLogin, onUser}){
     const [messages,setMessages] = useState([]);
     const [error,setError] = useState("");
     const [isMessages,setIsMessages] = useState(false);
+    const [userName,setUserName] = useState("");
+    const [userObj,setUserObj] = useState({});
     // console.log(user);
     const {username} = user;
 
@@ -38,6 +40,27 @@ function Home({user, API_URL, onLogin, onUser}){
     // const messageList = messages.map(message => (
     //     <MessageList key={message.id} msg={message}/>
     // ))
+     function handleAddChat(e){
+        e.preventDefault();
+        fetch(`${API_URL}/user`,{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+            },
+            credentials: "include",
+            body:JSON.stringify({username:userName})
+        })
+        .then(r=>{
+            if(r.ok){
+                r.json().then(data=>{
+                    setUserObj(data);
+                    setUserName("");
+
+                })
+            }
+        })
+
+    }
 
     return(
         <main className="home">
@@ -52,7 +75,7 @@ function Home({user, API_URL, onLogin, onUser}){
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search username"
             />
-            <Contact />
+            <Contact userName={userName} onSetUserName={setUserName} onAddChat={handleAddChat}/>
             {isMessages ? (
                 <>
                     {messages.length > 0 ? (
@@ -63,6 +86,8 @@ function Home({user, API_URL, onLogin, onUser}){
                             messageArray={messages}
                             onUser={onUser}
                             search={search}
+                            API_URL={API_URL}
+                            userObj={userObj}
                         />
                     //))
                     ): (
