@@ -17,11 +17,11 @@ function Profile({user}){
                     <button className="button">{username}</button>
                 </p>
                 
-                <p>
+                <p className="p">
                     <span>Email:</span>
                     <button className="button">{email}</button>
                 </p>
-                <button className="btn">Support</button>
+                <button className="btn">Support</button> {/*className="btn"*/}
             </div>
         </main>
     )
