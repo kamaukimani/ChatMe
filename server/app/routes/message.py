@@ -77,6 +77,24 @@ class MessageById(Resource):
         db.session.commit()
 
         return {},204
+    def post(self,id):
+        message = Message.query.filter(Message.id == id).first()
+        if message is None:
+            return {"error":"Oops!...No such record in our database"},404
+        data=request.get_json()
+        body=data.get("body")
+        if not body:
+            return {"error":"messge can not be empty"},409
+
+        
+        message.body=body
+        db.session.commit()
+
+        response=message.to_dict(rules=("-recipient","-sender",))
+        return make_response(
+            response,
+            200
+        )
 
 # class MessageUser(Resource):
 #     def get(sef):
