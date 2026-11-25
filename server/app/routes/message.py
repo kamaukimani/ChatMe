@@ -66,17 +66,17 @@ class MessagesByUser(Resource):
             200
         )
 
-class MessageById(Resource):
-    def get(self,id):
-        message=Message.query.filter(Message.id == id).first()
-        if message is None:
-            return {"error":"Message not found"},404
-        response=message.to_dict(rules=("-recipient.email","-recipient.id","-sender",))
 
-        return make_response(
-            response,
-            200
-        )
+class MessageById(Resource):
+    
+    def delete(self,id):
+        message=Message.query.filter_by(id = id).first()
+        if message is None:
+            return {"error":"Ooops!...the record does not exist"},404
+        db.session.delete(message)
+        db.session.commit()
+
+        return {},204
 
 # class MessageUser(Resource):
 #     def get(sef):
