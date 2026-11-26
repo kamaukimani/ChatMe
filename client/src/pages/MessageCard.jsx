@@ -42,11 +42,13 @@ function MessageCard({ API_URL, currentUser, userName }) {
                     <p className="date">{updatedAt}</p>
                 </small>
                 <div className="span">
-                    <button onClick={() => setIsEditing(msg)} >
-                        <span >
-                            ✏️
-                        </span>
+                    {isSentByMe ? (
+                        <button onClick={() => setIsEditing(msg)} >
+                            <span >
+                                ✏️
+                            </span>
                     </button>
+                    ) : null}
                     <button className="delete"
                         onClick={() => deleteMessage(msg.id)}
                         >
