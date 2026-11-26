@@ -300,4 +300,21 @@ body {
   flex-direction:row;
   justify-content: flex-end;
   gap:5px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+
 }
+/* .span:focus{
+  opacity:1;
+  pointer-events: auto;
+} */
+.sent-right:hover .span,
+.span:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+.received-left:hover .span,
+.span:focus-within {
+  opacity: 1;
+  pointer-events: auto;
